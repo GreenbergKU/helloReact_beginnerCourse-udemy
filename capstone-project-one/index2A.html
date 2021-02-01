@@ -17,68 +17,120 @@
   <title>FriendLy</title>
 </head>
 <body>
-  <div id="app">React has not rendered yet</div>
+  <div id="friendLy-app" style="display: flex;">React has not rendered yet</div>
 
   <script type="text/babel">
-
-    // FriendLy Complex Component
-    function FriendLy() {
+  
+    function FriendLyCardsSec() {
+      var secStyle = {
+        display: "flex",
+        flexWrap: "wrap",
+        margin: 10,
+        justifyContent: "space-evenly",
+        alignItems: "space-evenly",
+        gap: 5,
+      }
+      return(
+        <section style={secStyle}>
+          <FriendLy card={exUser} />
+          <FriendLy card={exUser} />
+          <FriendLy card={exUser} />
+          <FriendLy card={exUser} />
+          <FriendLy card={exUser} />
+          <FriendLy card={exUser} />
+          <FriendLy card={exUser} />
+          <FriendLy card={exUser} />
+          <FriendLy card={exUser} />
+          <FriendLy card={exUser} />
+          <FriendLy card={exUser} />
+          <FriendLy card={exUser} />
+          <FriendLy card={exUser} />
+        </section>
+      )
+    }
+    
+    // FriendLy Complex Component 
+    function FriendLy(props) {
+      console.log("props: ", props)
       var friendlyStyle = {
+        display: "grid",
+        justifyContent: "space-evenly",
+        alignItems: "center",
         height: 300,
         width: 200,
-        padding: 0,
+        padding: 10,
+        margin: 10,
         backgroundColor: "#FFF",
         WebkitFilter: "drop-shadow(0px 0px 5px #555)",
         filter: "drop-shadow(0px 0px 5px #555)"
       }
       return(
         <div style={friendlyStyle}>
-          <Avatar/>
-          <UserName/>
+          <Avatar img={props.card.img}/>
+          <UserName name={props.card.name}/>
           <GetConnected/>
         </div>
       );
     }
 
     // Avatar Component
-    function Avatar() {
+    function Avatar({img}) {
       var avatarStyle = {
-        marginLeft: 20,
-        marginTop: 20,
         width: 150,
         height: 150,
-        borderRadius: "50%"
+        borderRadius: "50%",
+        overflowVisible: "none",
       }
       return(
-        <img src="https://pbs.twimg.com/profile_images/699422966556168193/zUm4vhAo_400x400.jpg" alt="profile pic" style={avatarStyle}/>
+        <img src={img} alt="profile pic" style={avatarStyle}/>
       );
     }
 
     // UserName Component
-    function UserName() {
+    function UserName({name}) {
       var nameStyle = {
-        fontSize: 24,
+        fontSize: 18,
         fontFamily: "Arial, Helvetica, sans-serif",
-        margin: 20
+        textAlign: "center",
       }
       return(
-        <h1 style={nameStyle}>Profile Name</h1>
+        <h1 name={name} style={nameStyle}>{name}</h1>
       );
     }
 
     // GetConnected Complex Component
     function GetConnected() {
+      var connectedStyle = {
+        justifyContent: "space-between",
+        margin: 0,
+        padding: 0,
+        display: "flex",
+      };
       return(
-        <div>
+        <div style={connectedStyle}>
+          <Icon name="fa fa-thumbs-o-up"/>
+          <Icon name="fa fa-share"/>
+          <Icon name="fa fa-users"/>
+        </div>
+        /*
+        <div style={connectedStyle}>
           <Like/>
           <Share/>
           <Add/>
         </div>
+        */
       );
     }
+    
+    function Icon({name}) {
+      return(
+        <i className={name} aria-hidden="true"></i>
+      );
+    }
+    
+    /*
 
       var iconStyle = {
-        margin: 20
       }
 
       // Like Component
@@ -101,19 +153,29 @@
           <i className="fa fa-users" aria-hidden="true" style={iconStyle}></i>
         );
       }
-
-      // PART II: Mass produce individual FriendLy cards using props
-        // DESCRIPTION:
-          // Challenge 1 - Use props to pass the name of the person from ReactDOM.render() method to parent FriendLy component to child UserName component
-          // Challenge 2 - Use props to pass the image URL from ReactDOM.render() method to parent FriendLy component to child Avatar component
-          // Challenge 3 - Mass produce individual FriendLy cards by providing props and values in our ReactDOM.render() method
+      
+    */
+ 
+  // PART II: Mass produce individual FriendLy cards using props
+    // DESCRIPTION:
+      // Challenge 1 - Use props to pass the name of the person from ReactDOM.render() method to parent FriendLy component to child UserName component
+      // Challenge 2 - Use props to pass the image URL from ReactDOM.render() method to parent FriendLy component to child Avatar component
+      // Challenge 3 - Mass produce individual FriendLy cards by providing props and values in our ReactDOM.render() method
+          
+    let exUser = {
+      name: "Example Name",
+      img: "https://greenbergku.github.io/devSite/images/profile_pic.png"
+    }
+    
+    let friendlyCards = [exUser, exUser, exUser]
+    
 
     ReactDOM.render(
-      <FriendLy/>,
-      document.getElementById("app")
+      <div>
+        <FriendLyCardsSec cards={friendlyCards}/>      
+      </div>,
+      document.getElementById("friendLy-app")
     );
-
   </script>
-
 </body>
 </html>
