@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REACT: FriendLy - Capstone Project 1</title>
+    <!-- REACT LIBRARY -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- BABEL LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
+  </head>
+  <body>
+    <!-- DESIGNATED LOCATION TO INSERT REACT content -->
+    <div id="capstone-1">React has not rendered yet</div>
+    
+    <!-- javascript -->
+    <script type="text/babel">
+
+      // FriendLy Complex Component <FriendLy/>
+      function FriendLy() {
+
+        const friendlyStyle = {
+          height: 300,
+          width: 200,
+          padding: 0,
+          backgroundColor: "#FFF",
+          WebkitFilter: "drop-shadow(0px 0px 5px #555)",
+          filter: "drop-shadow(0px 0px 5px #555)",
+        };
+
+        return(
+          <div style={friendlyStyle}>
+            <Avatar/>
+            <UserName/>
+            <GetConnected/>
+          </div>
+        );
+      }
+
+      // Avatar Component <Avatar/>
+      function Avatar() {
+
+        const avatarStyle = {
+          marginLeft: 20,
+          marginTop: 20, 
+          with: 150,
+          height:150,
+          borderRadius: "50%",
+        };
+
+        return(
+          <img src="https://greenbergku.github.io/devSite/images/profile_pic.png" alt="Proile picture of Suzanne Wolf" style={avatarStyle}/>
+        );
+      } 
+      
+      // UserName Component <UserName/>
+      function UserName() {
+
+        const nameStyle = {
+          fontSize: 24,
+          fontFamily: "Arial, Helvetica, sans-serif",
+          margin: 20,
+        };
+
+        return(
+          <h1 style={nameStyle}>Suzanne Wolf</h1>
+        );
+      }
+
+      // GetConnected Component <GetConnected/>
+      function GetConnected() {
+
+        const iconsWrapperStyle = {
+          display: "flex",
+          justifyContent: "space-between",
+        };
+
+        return(
+          <div style={iconsWrapperStyle}>  
+            <Like/>
+            <Share/>
+            <Add/> 
+          </div>
+        );
+      }
+      
+      const iconStyle = {
+        margin: 20,
+      }
+
+      function Like() {
+        return(
+          <i className="fa fa-thumbs-o-up" aria-hidden="true" style={iconStyle}></i>
+        );
+      }
+
+      function Share() {
+        return(
+          <i className="fa fa-share" aria-hidden="true" style={iconStyle}></i>
+        );
+      }
+
+      function Add() {
+        return(
+          <i className="fa fa-users" aria-hidden="true" style={iconStyle}></i>
+        );
+      }
+
+      ReactDOM.render(
+        <FriendLy/>,
+        document.getElementById("capstone-1")
+      );
+
+    </script>
+  </body>
+</html>
