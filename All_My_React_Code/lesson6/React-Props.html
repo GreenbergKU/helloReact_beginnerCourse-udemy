@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REACT: Props!</title>
+    <!-- REACT LIBRARY -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- BABEL LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <!-- <link rel="stylesheet" href="./React-##name##.css"> -->
+  </head>
+  <body>
+    <!-- DESIGNATED LOCATION TO INSERT REACT content -->
+    <div id="react6-Props" style="display: flex; justify-content: center">React has not rendered yet</div>
+    <!-- javascript -->
+    <script type="text/babel">
+
+      const Person = function(props) {
+        return(
+          <h2 style={createStyle(props.color)}>
+            Hi, {props.name}!
+          </h2>
+        );
+      }
+
+      class PersonClass extends React.Component {
+        render() {
+          // const personStyle = function(props) {
+          //   return {
+          //     display: "grid",
+          //     alignItems: "center",
+          //     height: 100,
+          //     width: 150,
+          //     margin: 10,
+          //     // fontSize: "1em",
+          //     fontWeight: 600,
+          //     textAlign: "center",
+          //     backgroundColor: {props.color},
+          //   }
+          // }
+        
+          return( 
+            // <div style={personStyle}>
+            <div style={createStyle(this.props.color)}>
+              Hi, {this.props.name}!    
+            </div>
+          );
+        };
+      }
+
+      const flex = {
+        display: "flex",
+        justifyContent: "space-between",
+        justifySelf: "center",
+        fontFamily: "sans-serif",
+        fontSize: ".55em",
+        width: 700,
+      }
+
+      const grid = {
+        display: "grid",
+        justifyItems: "center",
+        width: 325,
+      }
+      
+      function createStyle(color) {
+        return {
+          display: "grid",
+          alignItems: "center",
+          height: 100,
+          width: 150,
+          margin: 10,
+          // fontSize: "1em",
+          fontWeight: 600,
+          textAlign: "center",
+          backgroundColor: color,
+        }; 
+      }
+
+      ReactDOM.render(
+        <span style={flex}>
+ 
+          <div id="stateless-functional-comp" style={grid}>
+            <h1>FUNCTIONAL COMPONENTS</h1>
+            <Person name="Suzanne"/>
+            <Person name="Kasey"/>
+            <Person name="Boades"/>
+            <Person name="Knotts"/>
+          </div>
+          
+          <div id="class-comp" style={grid}>
+            <h1>CLASS COMPONENTS</h1>
+            <PersonClass color="purple" name="Suzanne"/>
+            <PersonClass color="red" name="Kasey"/>
+            <PersonClass color="orange" name="Boades"/>
+            <PersonClass color="green" name="Knotts"/>  
+          </div>
+
+        </span>,
+        document.getElementById("react6-Props")
+      );
+
+    </script>
+  </body>
+</html>
+
+<!--
+// const react6 = document.getElementById("react6-Props");
+      
+// const Person = function(props) {
+//   const personStyle = {
+//     // fontSize: 35,
+//     display: grid,
+//     height: 200,
+//     width: 200,
+//     fontSize: 35,
+//     fontWeight: 600,
+//     alignSelf: "center",
+//     textAlign: "center",
+//     margin: 0,
+//   };
+
+//   return(
+//     <h2 style={personStyle}>
+//       Hi, {props.name}!
+//     </h2>
+//   );
+// }
+
+// class PersonClass extends React.Component {
+//   render() {
+//     const personClassStyle = {
+//       display: grid,
+//       height: 200,
+//       width: 200,
+//       fontSize: 35,
+//       fontWeight: 600,
+//       alignContent: "center",
+//       textAlign: "center",
+//       backgroundColor: this.props.color,
+//     };
+//     return(
+//       <div style={personClassStyle}>
+//         Hi, {this.props.name}!    
+//       </div>
+//     );
+//   };
+// }
+
+// const Person = function(props) {
+  // const personStyle = {
+  //   display: grid,
+  //   height: 200,
+  //   width: 200,
+  //   fontSize: 35,
+  //   fontWeight: 600,
+  //   alignSelf: "center",
+  //   textAlign: "center",
+  //   margin: 0,
+  // };
+//   return(
+//     <h2 style={personStyle}>
+//       Hi, {props.name}!
+//     </h2>
+//   );
+// }
+
+// const personClassStyle = {
+//   display: grid,
+//   height: 200,
+//   width: 200,
+//   fontSize: 35,
+//   fontWeight: 600,
+//   alignContent: "center",
+//   textAlign: "center",
+//   backgroundColor: this.props.color,
+// };    
+
+-->
+
