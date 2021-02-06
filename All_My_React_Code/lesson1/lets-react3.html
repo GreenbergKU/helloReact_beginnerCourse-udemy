@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lets REACT!</title>
+    <!-- REACT LIBRARY -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- BABEL LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <link rel="stylesheet" href="./lets-react.css">
+  </head>
+  <body>
+    <!-- DESIGNATED LOCATION TO INSERT REACT content -->
+    <div id="app">React has not rendered yet</div>
+    <!-- javascript -->
+    
+    <script src="./lets-react3.js" type="text/babel">
+
+      // ASSIGNMENT - CHALLENGE
+      // RENDER 3 JSX ELEMENTS TO THE DOM
+
+      let div = 
+        <div>
+          <h1>Hello World!</h1>
+          <h2>Have a great Day!</h2>
+          <p>Remember to smile... it's contagious!</p>
+        </div>
+      ;
+    
+      ReactDOM.render(
+        // REACT WHAT - JSX
+        div,
+        // REACT WHERE - DIV WITH ID of "app"
+        document.getElementById("app")
+      );
+      
+    </script>
+  </body>
+</html>
