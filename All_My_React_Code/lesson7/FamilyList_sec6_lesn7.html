@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REACT: FamilyList (section6 / lesson7}</title>
+    <!-- REACT LIBRARY -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- BABEL LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <!-- <link rel="stylesheet" href="./React-##name##.css"> -->
+  </head>
+  <body>
+    <!-- DESIGNATED LOCATION TO INSERT REACT content -->
+    <div id="family-list">React has not rendered yet</div>
+    <!-- javascript -->
+    
+    <script type="text/babel">
+       
+
+      // CREATE FamilyList component
+      const FamilyList = (family) => {
+          // CHALLENGE #1
+          // use map method on siblings array to create new array full of JSX code
+        const siblingsList = family.list.map(sibling => 
+          <Sibling key={sibling.id} data={sibling}/> 
+        ); 
+        return(
+          <span>
+              <h3>{family.title}</h3>
+              {siblingsList}
+          </span>
+        );
+      }     
+
+      function Sibling({data}) {
+        return(
+          <div id={data.id} isfemale={data.female.toString()}>
+            {data.name}
+          </div>
+        );
+      }
+      
+      class FamilySiblings extends React.Component {
+        render() {
+          const data = this.props.data;
+          // METHOD CHAINING
+          const FindFemales = data.filter( sibling => sibling.female );
+          const FindMales = data.filter( sibling => !sibling.female ); 
+          
+          return(
+            <div>
+              <FamilyList title="All Siblings" list={data} />          
+              <hr/>
+              {/* CHALLENGE #2: Use the filter method to only show female siblings */}
+              <FamilyList title="Female Siblings" list={FindFemales} />
+              <hr/>
+              {/* CHALLENGE #3 - use filter and map to generate JSX for male siblings*/}  
+              <FamilyList title="Male Siblings" list={FindMales} />
+            </div>
+          );
+        };
+      }
+
+      // ARRAY OF OBJECTS - 3 PROPS (ID, NAME AND FEMALE) 3 VALUES (NUMBER, STRING, BOOLEAN)
+      var siblingsData = [
+        {id: 1, name: 'Chris', female: false}, 
+        {id: 2, name: 'Jeff', female: false},
+        {id: 3, name: 'Julie', female: true}, 
+        {id: 4, name: 'Jessica', female: true}
+      ];
+
+      ReactDOM.render(
+        <FamilySiblings data={siblingsData}/>,
+        document.getElementById("family-list")
+      );
+
+      // {/*<Females siblings={siblingsData}/>*/}
+      // METHOD CHAINING
+      // CHALLENGE #2
+      // Use the filter method to only show female siblings
+      
+    //const FindFemales = (listData) => listData.filter(sibling => sibling.female);
+        
+      // ** OR ** //
+        // function Females({list}) {
+        //   return (
+        //     <FamilyList title="female-siblings" list={siblings.filter(sibling => sibling.female)} />
+        //   );
+        // } 
+
+      // CHALLENGE #3 - use filter and map to generate JSX for male siblings
+      
+    //const FindMales = (listData) => listData.filter(sibling => !(sibling.female)); 
+      
+      // CHALLENGE - use filter and map to generate JSX for male siblings
+      // function FindMales(listData) {
+      //   return data.filter(sibling => !sibling.female);
+      // }
+
+      //props.siblings.filter(function(person) {
+        //return person.female === false;
+      //}).map(function(person) {
+      //  return <div key={person.id}>{person.name}</div>
+      //});
+
+      /*
+
+      */
+
+    </script>
+  </body>
+</html>
+
+
+<!--
+  /* Example
+    function FamilyList(props) {
+      let siblings = props.siblings;
+      return();
+    }
+  */
+
+
+  <script>
+    Challenge3{
+      
+      return(
+        <div>
+          <h1>Female Siblings</h1>
+          <div>              
+            {/*Render female siblings*/}       
+            {femaleSiblings}
+          </div>
+          <hr/>
+          <h1>Male Siblings</h1>
+          <div>
+            {/*Render male siblings*/}
+            {maleSiblings}
+          </div>
+        </div>
+      );
+    }
+
+  </script>
+</div>
+
+-->
