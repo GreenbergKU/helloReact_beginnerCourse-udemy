@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REACT: Class Components!</title>
+    <!-- REACT LIBRARY -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- BABEL LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <link rel="stylesheet" href="./React-Components.css">
+  </head>
+  <body>
+    <!-- DESIGNATED LOCATION TO INSERT REACT content -->
+    <div id="shapes">React wont RENDER!</div>
+    <!-- javascript -->
+    
+    <script type="text/babel">
+
+      const shapesDiv = document.getElementById("shapes");
+      
+      class Shapes extends React.Component {
+        render() {   
+
+          const h1Style = {
+            textAlign: "center",
+            width: "100%",
+            fontSize: 25,
+          };
+
+          const blueStyle = {
+            display: "grid",
+            justifyItems: "center",
+            width: "50%",
+          };
+
+          return(
+            <div id="shapes-wrapper">
+              <h1 style={h1Style}>Circle, Square, Rectangle</h1>
+              <div id="inner-shapes">
+                <span id="red-shapes">
+                  <Circle/>
+                  <Square/>
+                  <Rectangle/>
+                </span>
+                <span id="blue-shapes" style={blueStyle}>
+                  <StyledCircle/>
+                  <StyledSquare/>
+                  <StyledRectangle/>
+                </span>
+              </div>
+            </div>
+          );
+        };
+      }
+
+        // <div id="shapes-wrapper">
+        //   <h1 style={h1Style}>Circle, Square, Rectangle</h1>
+        //   <div id="inner-shapes">
+        //     <span id="red-shapes">
+        //       <Circle/>
+        //       <Square/>
+        //       <Rectangle/>
+        //     </span>
+        //     <span id="blue-shapes" style={blueStyle}>
+        //       <StyledCircle/>
+        //       <StyledSquare/>
+        //       <StyledRectangle/>
+        //     </span>
+        //   </div>
+        // </div>
+
+      class Circle extends React.Component {
+        render() {
+          return (
+            <div id="circle" className="red-shape">Circle</div>
+          );
+        };
+      }
+
+      class Square extends React.Component{
+        render() {
+          return (
+            <div id="square" className="red-shape">Square</div>
+          );
+        };
+      }
+
+      class Rectangle extends React.Component{
+        render() {
+          return (
+            <div id="rectangle" className="red-shape">Rectangle</div>
+          );
+        };
+      }
+      
+      ///////////////////////////
+      // * styled * Components //
+      ///////////////////////////
+
+      const customizeStyle = function(shape) {  
+        
+        const shapeStyle = {
+          height: 50,
+          background: "blue",
+          margin: 15,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        };
+        return (
+          {...shapeStyle, ...shape}
+        );     
+      }
+
+      class StyledCircle extends React.Component {
+        render() {
+
+          const circle = {
+            width: 50,
+            borderRadius: "50%",
+          };
+
+          return (
+            <div style={customizeStyle(circle)}>Circle</div>
+          );
+        };
+      }
+
+      class StyledSquare extends React.Component {
+        render() {
+
+          const square = {
+            width: 50,
+          };
+
+          return (
+            <div style={customizeStyle(square)}>Square</div>
+          );
+        };
+      }
+
+      class StyledRectangle extends React.Component {
+        render() {
+
+          const rectangle = {
+            width: 90,
+          };
+
+          return (
+            <div style={customizeStyle(rectangle)}>Rectangle</div>
+          );
+        };
+      }
+
+      ReactDOM.render( 
+        <Shapes/>,
+        shapesDiv
+        // <div id="shapes-wrapper">
+        //   <Shapes/>
+        //   <div id="inner-shapes">
+        //     <span id="red-shapes">
+        //       <Circle/>
+        //       <Square/>
+        //       <Rectangle/>
+        //     </span>
+        //     <span id="blue-shapes" style={blueStyle}>
+        //       <StyledCircle/>
+        //       <StyledSquare/>
+        //       <StyledRectangle/>
+        //     </span>
+        //   </div>
+        // </div>,
+        // shapesDiv
+      );
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>REACT: Functional Components!</title>
+    <!-- REACT LIBRARY -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- BABEL LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <link rel="stylesheet" href="./React-Components.css">
+  </head>
+  <body>
+    <!-- DESIGNATED LOCATION TO INSERT REACT content -->
+    <div id="functional-colors">React has not rendered yet</div>
+    
+    <!-- javascript -->
+    
+    <script type="text/babel">
+
+      const wrapperStyle = {
+        width: "50%",
+        border: "2px black solid",
+        textAlign: "center",
+      };
+
+      const divStyle = {
+        display: "grid",
+        justifyContent: "center",
+        height: "80vh",
+      };
+
+      const colorStyle = function(color) {
+        return {
+          display: "grid",
+          height: "9vh",
+          width: 150,
+          padding: 10,
+          margin: 0,
+          justifyContent: "center",
+          color: "black",
+          fontSize: "1em",
+          backgroundColor: color,
+        };
+      };
+
+      const ColorSpectrum = function() {
+
+        const spectrumH1Style = {
+          padding: 10,
+          textAlign: "center",
+          fontSize: 18*.7,
+        };
+        
+        return (
+          <span id="functional-spectrum-wrapper" style={wrapperStyle}>
+            <h1 style={spectrumH1Style}>
+              FUNCTIONAL CONPONENTS
+            </h1>
+            <div id="colors" style={divStyle}>
+              <Red/>
+              <Orange/>
+              <Yellow/>
+              <Green/>
+              <Blue/>
+              <Indigo/>
+              <Violet/>
+            </div>
+          </span>
+        );
+      };
+
+      const Red = function() {
+        return (
+          <h1 style={colorStyle("red")}>Red</h1>
+        );
+      };
+      
+      const Orange = function() {
+        return (
+          <h1 style={colorStyle("orange")}>Orange</h1>
+        );
+      }
+      
+      const Yellow = function() {
+        return (
+          <h1 style={colorStyle("yellow")}>Yellow</h1>
+        );
+      }
+      
+      const Green = function() {
+        return (
+          <h1 style={colorStyle("green")}>Green</h1>
+        );
+      }
+      
+      const Blue = function() {
+        return (
+          <h1 style={colorStyle("blue")}>Blue</h1>
+        );
+      }
+      
+      const Indigo = function() {
+        return (
+          <h1 style={colorStyle("indigo")}>Indigo</h1>
+        );
+      }
+      
+      const Violet = function() {
+        return (
+          <h1 style={colorStyle("violet")}>Violet</h1>
+        );
+      };
+      
+
+      ///////////////////////////
+      // ** REFACTOR w/ PROPS **
+      /////////////////////////// 
+      const customizeHeader = function(num) { 
+        return {
+          width: "100%",
+          padding: 5,
+          textAlign: "center",
+          fontSize: num*.7,
+        };
+      };
+
+      class Spectrum extends React.Component {
+          
+        render() {
+                 
+          const SpectrumHeader = function() { 
+            return(
+              <h1 style={customizeHeader(26)}>
+                COLOR SPECTRUM: COMPONENTS & PROPS (REACT)
+              </h1>
+            );
+          };
+
+          const PropsHeader = function() {
+            return(
+              <h1 style={customizeHeader(18)}>
+                CLASSES & FUNCTIONS: w/ PROPS
+              </h1>
+            );
+          };
+
+          
+
+          const ColorProps = function({name}) {
+            
+            const propsStyle = {
+              display: "grid",
+              height: "9vh",
+              width: 150,
+              padding: 10,
+              margin: 0,
+              justifyContent: "center",
+              color: "black",
+              fontSize: "1em",
+              backgroundColor: name.toLowerCase(),
+            };
+            
+            return(
+              <div name={name} color={name.toLowerCase()} style={propsStyle}>
+                  {name}       
+              </div>
+            );
+          }
+
+          const containerStyle = {
+            display: "flex",
+            padding: "2%",
+            height: "50%", 
+          }
+
+          // Les7 / Sec8: COLOR SPECTRUM REFACTOR
+          // CHALLENGE 1 = create prop of colors and assign it the value of our colors array
+          
+
+          const SpectrumMapHeader = function() {
+            return(
+              <h1 style={customizeHeader(18)}>
+                REFACTOR w/ FILTER AND MAP
+              </h1>
+            );
+          };
+          
+          const colorsArr = [
+            {id: 1, color: "", name: "Red"}, 
+            {id: 2, color: "", name: "Orange"}, 
+            {id: 3, color: "", name: "Yellow"}, 
+            {id: 4, color: "", name: "Green"}, 
+            {id: 5, color: "", name: "Blue"}, 
+            {id: 6, color: "", name: "Indigo"}, 
+            {id: 7, color: "", name: "Violet"},
+          ];
+
+          class SpectrumRefactor extends React.Component {
+            render() {
+              const colors = this.props.colors;
+              console.log('colors: ', colors);
+              
+              const mapColor = colors.map(color => <ColorProps key={color.id} name={color.name}/> )
+              
+              return(           
+                <span id="filter-map-colors" style={divStyle}>
+                  {mapColor}
+                </span>         
+              );
+            };
+          }
+
+          return(
+            <span>
+              <SpectrumHeader/>
+
+              <span id="spectrum-container" style={containerStyle}>
+                <ColorSpectrum/>
+
+                <span id="props-spectrum-wrapper" style={wrapperStyle}>
+                  <PropsHeader/> 
+                  
+                  <div id="color-props" style={divStyle}>
+                    <ColorProps name="Red"/>
+                    <ColorProps name="Orange"/>
+                    <ColorProps name="Yellow"/>
+                    <ColorProps name="Green"/>
+                    <ColorProps name="Blue"/>
+                    <ColorProps name="Indigo"/>
+                    <ColorProps name="Violet"/>
+                  </div>
+                </span>
+                
+                {/*Les7 / Sec8: COLOR SPECTRUM REFACTOR*/}
+                {/*CHALLENGE 1 = create prop of colors and assign it the value of our colors array*/}
+                <span id="spectrum-map-wrapper" style={wrapperStyle}>
+                  <SpectrumMapHeader/>                  
+                  <SpectrumRefactor colors={colorsArr}/>
+                </span>
+
+              </span>  
+            </span> 
+          );
+        };
+      };
+
+      ReactDOM.render(
+        <Spectrum/>,
+        document.getElementById("functional-colors")
+      );
+
+    </script>
+    
+  </body>
+</html>
+
+<!--
+          // style="display: flex; justify-content: center"
+          /*
+          return(
+            <span id="spectrum-container" style="display: flex; justify-content: center"> 
+              <SpectrumHeader/>
+                
+              <span id="functional-spectrum-wrapper">
+                <ColorSpectrum/>  
+              </span>
+
+              <span id="props-spectrum-wrapper">
+                <PropsHeader/> 
+                <div id="props-colors" style={divStyle}>
+                  <ColorProps name="Red"/>
+                  <ColorProps name="Orange"/>
+                  <ColorProps name="Yellow"/>
+                  <ColorProps name="Green"/>
+                  <ColorProps name="Blue"/>
+                  <ColorProps name="Indigo"/>
+                  <ColorProps name="Violet"/>
+                </div>
+              </span>
+              
+            </span>,
+            document.getElementById("functional-colors")
+          );
+          */
+
+
+<!--
+      // <h1 style={spectrumStyle}>
+      //   SPECTRUM w/ FUNCTIONAL COMP.
+      // </h1>
+      // <div id="functional-colors" style={divStyle}>
+      //   <Red/>
+      //   <Orange/>
+      //   <Yellow/>
+      //   <Green/>
+      //   <Blue/>
+      //   <Indigo/>
+      //   <Violet/>
+      // </div>
+      
+      // ORIGONAL CODE BELOW
+      
+      /*
+      const ColorSpectrum = function() {
+        const spectrumStyle = {
+          width: "100%",
+          padding: 10,
+          textAlign: "center",
+          fontSize: 28,
+        };
+        
+        const divStyle = {
+          display: "grid",
+          justifyContent: "center",
+          height: "80vh",
+        };
+
+        return (
+          <span className="functional-spectrum-wrapper" style="display: grid; justify-content: center">   
+            <h1 className="functional-spectrum" style={spectrumStyle}>
+              COLOR SPECTRUM (FUCTIONAL)
+            </h1>
+            <div id="colors" style={divStyle}>
+              <Red/>
+              <Orange/>
+              <Yellow/>
+              <Green/>
+              <Blue/>
+              <Indigo/>
+              <Violet/>
+            </div>
+          </span>
+        );
+      };
+
+      let colorStyle = function(color) {
+        return {
+          display: "grid",
+          height: "9vh",
+          width: 150,
+          padding: 10,
+          margin: 0,
+          justifyContent: "center",
+          color: "black",
+          fontSize: "1em",
+          backgroundColor: color,
+        };
+      };
+
+      const Red = function() {
+        return (
+          <h1 style={colorStyle("red")}>Red</h1>
+        );
+      };
+      
+      const Orange = function() {
+        return (
+          <h1 style={colorStyle("orange")}>Orange</h1>
+        );
+      }
+      
+      const Yellow = function() {
+        return (
+          <h1 style={colorStyle("yellow")}>Yellow</h1>
+        );
+      }
+      
+      const Green = function() {
+        return (
+          <h1 style={colorStyle("green")}>Green</h1>
+        );
+      }
+      
+      const Blue = function() {
+        return (
+          <h1 style={colorStyle("blue")}>Blue</h1>
+        );
+      }
+      
+      const Indigo = function() {
+        return (
+          <h1 style={colorStyle("indigo")}>Indigo</h1>
+        );
+      }
+      
+      const Violet = function() {
+        return (
+          <h1 style={colorStyle("violet")}>Violet</h1>
+        );
+      };
+      */
+-->
+
