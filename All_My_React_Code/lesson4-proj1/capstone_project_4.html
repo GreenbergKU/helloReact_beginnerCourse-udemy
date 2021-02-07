@@ -1,0 +1,210 @@
+<!-- Copy of index.html without changes / additions for part II of capstone project -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- REACT LIBRARY -->
+    <script src="https://unpkg.com/react@15.5.4/dist/react.js"></script>
+    <!-- REACT DOM LIBRARY -->
+    <script src="https://unpkg.com/react-dom@15.5.4/dist/react-dom.js"></script>
+    <!-- BABEL LIBRARY -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>FriendLy</title>
+  </head>
+  <body>
+    <div id="friendLy-app">React has not rendered yet</div>
+    <!-- style="display: flex" -->
+
+    <script type="text/babel">
+    
+    // STAGE IV:
+      // create variable malePeopleItem and assign it to the filtered data array returning only those with a gender of male
+      // then transform and render to the DOM
+
+      // create variable femalePeopleItem and assign it to the filtered data array returning only those with a gender of female
+      // then transform and render to the DOM
+
+      const usersData = [
+        { name: "Rob",  gender: "male", img: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" },
+
+        { name: "Charles",  gender: "male", img: "https://static.pexels.com/photos/38630/bodybuilder-weight-training-stress-38630.jpeg" },
+
+        { name: 'Alex',  gender: "male", img: "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" },
+
+        { name: 'Natalie',  gender: "female", img: "https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" },
+
+        { name: 'Jenny',  gender: "female", img: "https://images.pexels.com/photos/736843/pexels-photo-736843.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" },
+
+        { name: 'Sarah',  gender: "female", img: "https://static.pexels.com/photos/324658/pexels-photo-324658.jpeg" },
+
+        { name: 'Josh',  gender: "male", img: "https://images.pexels.com/photos/2102332/pexels-photo-2102332.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" },
+
+        { name: 'Kenny',  gender: "male", img: "https://images.pexels.com/photos/428361/pexels-photo-428361.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" },
+
+        { name: 'John',  gender: "male", img: "https://static.pexels.com/photos/45882/man-crazy-funny-dude-45882.jpeg" },
+
+        { name: 'Alisha',  gender: "female", img: "https://images.pexels.com/photos/4153630/pexels-photo-4153630.jpeg?cs=srgb&dl=pexels-cottonbro-4153630.jpg&fm=jpg" },
+      ]
+
+      const FriendLy = (friendLy) => {
+        const data = friendLy.data;
+        let name = friendLy.name;
+        console.log("friendLy.all: ", friendLy.all);
+        // name = data.length === usersData.length ? name.toUpperCase() : `${name.toUpperCase()}-only`; 
+        name = friendLy.all ? name.toUpperCase() : `${name.toUpperCase()}-only`; 
+
+        const FriendLyCards = data.map(user => {
+
+          const friendlyStyle = {
+            display: "grid",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            height: 300,
+            width: 200,
+            padding: "10px 0px",
+            margin: 10,
+            backgroundColor: "#FFF",
+            WebkitFilter: "drop-shadow(0px 0px 5px #555)",
+            filter: "drop-shadow(0px 0px 5px #555)"
+          };
+
+          const GetIndex = (name) => data.findIndex(user => user.name === name);
+
+          user.id = GetIndex(user.name) + 1;
+
+          // Avatar Component
+          const Avatar = ({img}) => {
+            const avatarStyle = {
+              width: 150,
+              height: 150,
+              borderRadius: "50%",
+              overflowVisible: "none",
+            };
+            return(
+              <img src={img} alt="profile pic" style={avatarStyle}/>
+            );
+          }
+
+          // UserName Component
+          const UserName = ({name}) => {
+            const nameStyle = {
+              fontSize: 18,
+              fontFamily: "Arial, Helvetica, sans-serif",
+              textAlign: "center",
+            };
+            return(
+              <h1 name={name} style={nameStyle}>{name}</h1>
+            );
+          }
+
+          // GetConnected Complex Component
+          const GetConnected = ({user}) => {
+            const connectedStyle = {
+              justifyContent: "space-between",
+              margin: 0,
+              padding: 0,
+              display: "flex",
+            };
+
+            const Icon = ({name}) => {
+              return(
+                <i className={name} aria-hidden="true"></i>
+              );
+            }
+            
+            return(
+              <div style={connectedStyle}>
+                <Icon name="fa fa-thumbs-o-up"/>
+                <Icon name="fa fa-share"/>
+                <Icon name="fa fa-users"/>
+              </div>
+            );
+          }   
+
+          return(
+            <div key={GetIndex(user.name)} id={`${name}-${user.id}`} style={friendlyStyle}>
+              <Avatar img={user.img}/>
+              <UserName name={user.name}/>
+              <GetConnected/>
+            </div>
+          );
+        });     
+
+        const secStyle = {
+          display: "flex",
+          flexWrap: "wrap",
+          margin: 20,
+          justifyContent: "space-evenly",
+          gap: "10px",
+        }; 
+
+        const nameStyle = {
+          display: "block",
+          width: "100%",
+          textAlign: "center",
+          fontSize: 36,
+        }
+
+        return(
+          <section id="friendLy-cards-sec" style={secStyle}>
+            <h1 style={nameStyle}>{name}</h1>
+            {FriendLyCards}
+          </section>
+        );
+
+      };
+
+      const FindGender = (data, gender) => data.filter(user => user.gender === gender);
+
+
+      ReactDOM.render(
+
+        <div id="card-sec">
+          <FriendLy name="friendLy" data={usersData} all="true" />
+          <FriendLy name="men" data={FindGender(usersData, "male")} />
+          <FriendLy name="women" data={FindGender(usersData, "female")} />     
+        </div>,
+        document.getElementById("friendLy-app")
+
+      );
+
+    </script>
+  </body>
+</html>   
+
+<!--
+      var iconStyle = {
+      }
+
+      // Like Component
+      function Like() {
+        return(
+          <i className="fa fa-thumbs-o-up" aria-hidden="true" style={iconStyle}></i>
+        );
+      }
+
+      // Share Component
+      function Share() {
+        return(
+          <i className="fa fa-share" aria-hidden="true" style={iconStyle}></i>
+        );
+      }
+
+      // Add Component
+      function Add() {
+        return(
+          <i className="fa fa-users" aria-hidden="true" style={iconStyle}></i>
+        );
+      }
+ 
+  // PART II: Mass produce individual FriendLy cards using props
+    // DESCRIPTION:
+      // Challenge 1 - Use props to pass the name of the person from ReactDOM.render() method to parent FriendLy component to child UserName component
+      // Challenge 2 - Use props to pass the image URL from ReactDOM.render() method to parent FriendLy component to child Avatar component
+      // Challenge 3 - Mass produce individual FriendLy cards by providing props and values in our ReactDOM.render() method
+
+-->
